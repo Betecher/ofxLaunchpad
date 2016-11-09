@@ -30,6 +30,60 @@ void ofxLaunchpad::setup(int port, ofxLaunchpadListener* listener) {
 	}
 	
 	fbo.allocate(256, 256);
+
+#ifdef LAUNCHPADMK2
+	/*
+	----------
+	| (8, 0) | <= (row, col)
+	|   91   | <=    key
+	----------
+
+	Launchpad MK2
+	---------------------------------------------------------------------------------- sendControlChange
+	| (8, 0) | (8, 1) | (8, 2) | (8, 3) | (8, 4) | (8, 5) | (8, 6) | (8, 7) |        |
+	|  104   |  105   |  106   |  107   |  108   |  109   |  110   |  111   |        |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (0, 0) | (0, 1) | (0, 2) | (0, 3) | (0, 4) | (0, 5) | (0, 6) | (0, 7) | (0, 8) |
+	|   81   |   82   |   83   |   84   |   85   |   86   |   87   |   88   |   89   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (1, 0) | (1, 1) | (1, 2) | (1, 3) | (1, 4) | (1, 5) | (1, 6) | (1, 7) | (1, 8) |
+	|   71   |   72   |   73   |   74   |   75   |   76   |   77   |   78   |   79   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (2, 0) | (2, 1) | (2, 2) | (2, 3) | (2, 4) | (2, 5) | (2, 6) | (2, 7) | (2, 7) |
+	|   61   |   62   |   63   |   64   |   65   |   66   |   67   |   68   |   69   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (3, 0) | (3, 1) | (3, 2) | (3, 3) | (3, 4) | (3, 5) | (3, 6) | (3, 7) | (3, 7) |
+	|   51   |   52   |   53   |   54   |   55   |   56   |   57   |   58   |   59   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (4, 0) | (4, 1) | (4, 2) | (4, 3) | (4, 4) | (4, 5) | (4, 6) | (4, 7) | (4, 7) |
+	|   41   |   42   |   43   |   44   |   45   |   46   |   47   |   48   |   49   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (5, 0) | (5, 1) | (5, 2) | (5, 3) | (5, 4) | (5, 5) | (5, 6) | (5, 7) | (5, 7) |
+	|   31   |   32   |   33   |   34   |   35   |   36   |   37   |   38   |   39   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (6, 0) | (6, 1) | (6, 2) | (6, 3) | (6, 4) | (6, 5) | (6, 6) | (6, 7) | (6, 7) |
+	|   21   |   22   |   23   |   24   |   25   |   26   |   27   |   28   |   29   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	| (7, 0) | (7, 1) | (7, 2) | (7, 3) | (7, 4) | (7, 5) | (7, 6) | (7, 7) | (7, 7) |
+	|   11   |   12   |   13   |   14   |   15   |   16   |   17   |   18   |   19   |
+	---------------------------------------------------------------------------------- sendNoteOn
+	*/
+	for (int y = 0; y < 9; y++) {
+		if (y == 8) {
+			for (int x = 0; x < 8; x++) {
+				launchPadMK2Keys[y][x] = 104 + x;
+			}
+			launchPadMK2Keys[y][8] = -1; // empty position, will skip this position
+		}
+		else {
+			for (int x = 0; x < 9; x++) {
+				launchPadMK2Keys[y][x] = (8 - y) * 10 + 1 + x;
+			}
+		}
+	}
+
+	ctrlArea = "ALL";
+#endif
 }
 
 ofColor boostBrightness(ofColor color) {
@@ -172,9 +226,29 @@ void ofxLaunchpad::setLedAutomap(int col, ofxLaunchpadColor color) {
 }
 
 void ofxLaunchpad::setLedGrid(int col, int row, ofxLaunchpadColor color) {
+#ifdef LAUNCHPADMK2
+	if (ctrlArea != "ALL") {
+		if (row == 8 || col == 8) return;
+	}
+
+	int key = launchPadMK2Keys[row][col];
+	if (key == -1) return;
+	if (row == 8) {
+		midiOut.sendControlChange(1, key, color.getMidi());
+	}
+	else {
+		midiOut.sendNoteOn(1, key, color.getMidi());
+	}
+	
+	int i = row * cols + col;
+	if (i >= buffer.size()) return;
+	buffer[i] = color;
+#elif
 	if(row == automapRow) {
 		setLedAutomap(col, color);
 	} else {
+		int a = ((row & rowMask) << 4);
+		int b = ((col & colMask) << 0);
 		int key = ((row & rowMask) << 4) | ((col & colMask) << 0);
 		int i = row * cols + col;
 		if(buffer[i] != color) {
@@ -182,10 +256,19 @@ void ofxLaunchpad::setLedGrid(int col, int row, ofxLaunchpadColor color) {
 			buffer[i] = color;
 		}
 	}
+
+#endif
+	
+
 }
 
 ofxLaunchpadColor ofxLaunchpad::getLedGrid(int col, int row) const {
-	return buffer[row * cols + col];
+	int ind = row * cols + col;
+	if (ind >= buffer.size()) {
+		return 0;
+	} else {
+		return buffer[row * cols + col];
+	}
 }
 
 void ofxLaunchpad::set(ofPixels& pix, bool clear, bool copy) {

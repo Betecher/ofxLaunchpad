@@ -15,6 +15,8 @@
 #include "ofxLaunchpadListener.h"
 #include "ofxLaunchpadColor.h"
 
+#define LAUNCHPADMK2
+
 class ofxLaunchpad : public ofxMidiListener {
 public:	
 	virtual void setup(int port, ofxLaunchpadListener* listener = NULL);
@@ -53,6 +55,13 @@ protected:
 	
 	vector<ofxLaunchpadColor> buffer;
 	vector<ButtonEvent> lastEvent;
+
+private:
+	
+#ifdef LAUNCHPADMK2
+	int launchPadMK2Keys[9][9];
+	string ctrlArea; // "ALL": 80 keys; "KEY": 64 keys
+#endif
 };
 
 // <3 kyle
