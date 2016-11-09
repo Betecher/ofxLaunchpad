@@ -15,7 +15,7 @@
 #include "ofxLaunchpadListener.h"
 #include "ofxLaunchpadColor.h"
 
-class ofxLaunchpad : public ofxMidiListener, public ofBaseDraws {
+class ofxLaunchpad : public ofxMidiListener {
 public:	
 	virtual void setup(int port, ofxLaunchpadListener* listener = NULL);
 	void addListener(ofxLaunchpadListener* listener);

@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxLaunchpad.h"
-
+#include "ofxLaunchpadToggle.h"
 class ofApp : public ofBaseApp {
 public:
 	void setup();
