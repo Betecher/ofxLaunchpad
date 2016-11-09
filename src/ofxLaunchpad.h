@@ -19,7 +19,7 @@
 
 class ofxLaunchpad : public ofxMidiListener {
 public:	
-	virtual void setup(int port, ofxLaunchpadListener* listener = NULL);
+	virtual void setup(int outPort, int inPort, ofxLaunchpadListener* listener = NULL);
 	void addListener(ofxLaunchpadListener* listener);
 	void removeListener(ofxLaunchpadListener* listener);
 	

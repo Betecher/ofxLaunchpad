@@ -3,7 +3,10 @@
 void ofApp::setup(){
 	ofSetVerticalSync(true);
 	ofBackground(255);
-	launchpad.setup(1);
+	launchpad.setup(1, 0, &lis);
+
+
+	//ofAddListener(lis.gridButton, this, &ofApp::kavin);
 }
 
 void ofApp::update(){
@@ -20,6 +23,10 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 void ofApp::mouseDragged(int x, int y, int button) {
 	dragChange(x, y, button, false);
+}
+
+void ofApp::kavin(ButtonEvent & e) {
+	ofLogNotice(ofToString(e.row) + ", " + ofToString(e.col));
 }
 
 void ofApp::dragChange(int x, int y, int button, int reset) {

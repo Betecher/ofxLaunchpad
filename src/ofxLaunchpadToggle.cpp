@@ -4,8 +4,8 @@ ofxLaunchpadToggle::ofxLaunchpadToggle()
 :toggleMode(HOLD_MODE) {
 }
 
-void ofxLaunchpadToggle::setup(int port, ofxLaunchpadListener* listener) {
-	ofxLaunchpad::setup(port, listener);
+void ofxLaunchpadToggle::setup(int outPort, int inPort, ofxLaunchpadListener* listener) {
+	ofxLaunchpad::setup(outPort, inPort, listener);
 	addListener(this);
 }
 
