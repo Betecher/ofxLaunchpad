@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxLaunchpad\src\ofxLaunchpad.cpp">
+			<Filter>addons\ofxLaunchpad\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxLaunchpad\src\ofxLaunchpadColor.cpp">
+			<Filter>addons\ofxLaunchpad\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxLaunchpad\src\ofxLaunchpadToggle.cpp">
+			<Filter>addons\ofxLaunchpad\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMidi\src\ofxMidiIn.cpp">
+			<Filter>addons\ofxMidi\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMidi\src\ofxMidiOut.cpp">
+			<Filter>addons\ofxMidi\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxMidi\libs\RtMidi.cpp">
+			<Filter>addons\ofxMidi\libs</Filter>
+		</ClCompile>
+	</ItemGroup>
+	<ItemGroup>
+		<Filter Include="src">
+			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons">
+			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxLaunchpad">
+			<UniqueIdentifier>{43CC2115-A6EE-9A9D-AE83-0D34}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxLaunchpad\src">
+			<UniqueIdentifier>{62A42099-80E6-97EF-A491-B163}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMidi">
+			<UniqueIdentifier>{4DF4D977-A753-531B-5057-9AC1}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMidi\src">
+			<UniqueIdentifier>{7EED8620-FDD5-520C-3F5D-2677}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxMidi\libs">
+			<UniqueIdentifier>{B8086AD6-372B-1A12-88A6-74F9}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxLaunchpad\src\ofxLaunchpad.h">
+			<Filter>addons\ofxLaunchpad\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxLaunchpad\src\ofxLaunchpadColor.h">
+			<Filter>addons\ofxLaunchpad\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxLaunchpad\src\ofxLaunchpadListener.h">
+			<Filter>addons\ofxLaunchpad\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxLaunchpad\src\ofxLaunchpadToggle.h">
+			<Filter>addons\ofxLaunchpad\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidi.h">
+			<Filter>addons\ofxMidi\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiConstants.h">
+			<Filter>addons\ofxMidi\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiEvents.h">
+			<Filter>addons\ofxMidi\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiIn.h">
+			<Filter>addons\ofxMidi\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMidi\src\ofxMidiOut.h">
+			<Filter>addons\ofxMidi\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMidi\libs\RtError.h">
+			<Filter>addons\ofxMidi\libs</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxMidi\libs\RtMidi.h">
+			<Filter>addons\ofxMidi\libs</Filter>
+		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
+	</ItemGroup>
+</Project>
